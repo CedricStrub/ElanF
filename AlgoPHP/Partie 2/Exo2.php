@@ -43,11 +43,9 @@ echo '</table>';
 
 function afficherTableHTML($capitales){
     echo '<tr><th>Pays</th><th>Capitale</th></tr>';
+    
     foreach($capitales as $pays => $capitale){
-        echo '<tr>';
-        echo '<td>'.strtoupper($pays).'</td>';
-        echo '<td>'.$capitale.'</td>';
-        echo '</tr>';
+        echo '<tr>'.'<td>'.strtoupper($pays).'</td>'.'<td>'.$capitale.'</td>'.'</tr>';
     }
 
 }
