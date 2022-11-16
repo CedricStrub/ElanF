@@ -7,6 +7,13 @@ Créer une fonction personnalisée permettant d’afficher l’image N fois à l
 
 <?php
 
+$url = "http://my.mobirise.com/data/userpic/764.jpg";
 
+repeterImage($url,4);
 
+function repeterImage($url,$nb){
+    for($i=1;$i<=$nb;$i++){
+        echo '<img src="'.$url.'"/>';
+    }
+}
 ?>
