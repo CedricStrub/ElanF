@@ -39,7 +39,7 @@ $capitales = array(
 
 echo '<table>';
 
-echo afficherTableHTML($capitales);
+afficherTableHTML($capitales);
 
 echo '</table>';
 

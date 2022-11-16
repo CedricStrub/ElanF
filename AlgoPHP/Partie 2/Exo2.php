@@ -37,13 +37,13 @@ $capitales = array(
 
 echo '<table>';
 
-echo afficherTableHTML($capitales);
+afficherTableHTML($capitales);
 
 echo '</table>';
 
 function afficherTableHTML($capitales){
     echo '<tr><th>Pays</th><th>Capitale</th></tr>';
-    
+
     foreach($capitales as $pays => $capitale){
         echo '<tr>'.'<td>'.strtoupper($pays).'</td>'.'<td>'.$capitale.'</td>'.'</tr>';
     }
