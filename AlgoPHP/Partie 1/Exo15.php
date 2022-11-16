@@ -11,25 +11,25 @@ $date = new DateTimeImmutable("2022-11-15");
 
 class Personne
 {
-    private $_nom;
-    private $_prenom;
-    private $_aniv;
+    private $nom;
+    private $prenom;
+    private $aniv;
 
     function __construct($nom, $prenom, $aniv)
     {
-        $this->_nom = $nom;
-        $this->_prenom = $prenom;
-        $this->_aniv = $aniv;
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->aniv = $aniv;
     }
 
-    public function getNom(){
-        return $this->_nom;
+    function getNom(){
+        return $this->nom;
     }
     function getPrenom(){
-        return $this->_prenom;
+        return $this->prenom;
     }
     function getAniv($date){
-        $ans = $date->diff(new DateTimeImmutable($this->_aniv));
+        $ans = $date->diff(new DateTimeImmutable($this->aniv));
         return $ans->format('%y');
     }
     

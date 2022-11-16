@@ -11,7 +11,7 @@ $elements = array("Monsieur","Madame","Mademoiselle");
 alimenterListeDeroulante($elements);
 
 function alimenterListeDeroulante($elements){
-    echo '<form action="reponse.php" method="GET"><select name="titre">';
+    echo '<form><select name="titre">';
     foreach($elements as $titre){
         echo '<option>'.$titre.'</option>';
     }
