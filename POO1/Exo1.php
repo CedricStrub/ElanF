@@ -38,11 +38,37 @@ spl_autoload_register(function ($class_name) {
 
 });
 
-$t1 = new Titulaire('john','Doe','02/05/1999','Rio');
-$c1 = new Compte('Livret A',420,'€',$t1);
-$c2 = new Compte('Compte Courant',69.69,'€',$t1);
+$t1 = new Titulaire('John','Doe','02/05/1999','Londre');
+$t2 = new Titulaire('Arthur','Dupont','09/14/1979','Grenoble');
+$t3 = new Titulaire('Jeff','Fisher','01/30/1986','Washington');
+$c1 = new Compte('Livret A',420,'£',$t1);
+$c2 = new Compte('Compte Courant',69.69,'£',$t1);
+$c3 = new Compte('Compte Courant',874.05,'€',$t2);
+$c4 = new Compte('Compte Courant',17.95,'$',$t3);
+$c5 = new Compte('Livret A',837,'$',$t3);
+$c6 = new Compte('Plan Epargne Logement',12335,'$',$t3);
 
-$t1->virementCompte(50,$c1,$c2);
-
+echo $t1;
+echo "<br>";
+echo $t2;
+echo "<br>";
+echo $t3;
+echo "<br>";
+echo $c3->virementCompte(70,$c4);
+echo "<br>";
+echo $c2->virementCompte(30,$c5);
+echo "<br>";
+echo $c3->debiterCompte(369.99);
+echo "<br>";
+echo $c6->crediterCompte(666.66);
+echo "<br>";
+echo $c5->virementCompte(456,$c1);
+echo "<br>";
+echo $t1;
+echo "<br>";
+echo $t2;
+echo "<br>";
+echo $t3;
+echo "<br>";
 
 ?>

@@ -18,14 +18,7 @@ class Titulaire{
 
     public function addCompte(Compte $compte){
         $this->compte []= $compte;
-    }
-
-    public function virementCompte($montant,$c1,$c2){
-        echo $montant;
-        echo $c1;
-        echo $c2;
-    }
-    
+    }    
 
     public function getNom(){
         return $this->nom;
@@ -61,7 +54,13 @@ class Titulaire{
 
     public function __toString()
     {
-        return $this->nom." ".$this->prenom." ".$this->aniv." ".$this->ville;
+        $age = $this->aniv->diff(new DateTimeImmutable(date('m/d/Y', time())));
+        $a = $this->nom." ".$this->prenom." agé de ".$age->format('%y')." ans, habite ".
+            $this->getVille()." et possède ".count($this->compte)." compte :<br>";
+        foreach($this->compte as $c){
+            $a = $a."    - Un ".$c->getLibelle()." contenant : ".$c->getSolde()." ".$c->getDevise()."<br>";
+        }
+        return $a;
     }
 }
 
