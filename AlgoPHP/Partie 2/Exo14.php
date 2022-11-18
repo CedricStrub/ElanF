@@ -24,15 +24,23 @@ echo $ve1->getInfo()."<br/>";
 class Voiture
 {
     private $marque;
-    private $modèle;
+    private $modele;
 
-    public function __construct(string $marque,string $modèle){
+    public function __construct(string $marque,string $modele){
         $this->marque = $marque;
-        $this->modèle = $modèle;
+        $this->modele = $modele;
+    }
+
+    public function getMarque(){
+        return $this->marque;
+    }
+
+    public function getModele(){
+        return $this->modele;
     }
 
     public function getInfo(){
-        return $this->marque." ".$this->modèle;
+        return $this->marque." ".$this->modele;
     }
 }
 
@@ -40,14 +48,13 @@ class VoitureElec extends Voiture
 {
     private $autonomie;
 
-    public function __construct(string $marque,string $modèle,int $autonomie){
-        $this->marque = $marque;
-        $this->modèle = $modèle;
+    public function __construct(string $marque,string $modele,int $autonomie){
+        Voiture::__construct($marque,$modele);
         $this->autonomie = $autonomie;
     }
 
     public function getInfo(){
-        return $this->marque." ".$this->modèle." ".$this->autonomie;
+        return $this->getMarque()." ".$this->getModele()." ".$this->autonomie;
     }
 }
 
