@@ -19,13 +19,12 @@ class Films{
         $this->genre = [];
         $this->real = [];
         $this->acteurs = [];
-        $this->casting = new Casting();
+        $this->casting = [];
     }
 
     public function addActeurs(Acteurs $acteur){
         $this->acteurs []= $acteur;
         $acteur->addFilm($this);
-        $this->casting->addActeur($acteur->getNom(),$acteur->getPrenom(),$acteur->getRole());
     }
 
     public function addGenre (Genre $genre){
@@ -38,6 +37,9 @@ class Films{
         $real->addFilm($this);
     }
 
+    public function addCasting(Casting $casting){
+        $this->casting []= $casting;
+    }
 
     public function getTitre(){
         return $this->titre;
@@ -84,9 +86,9 @@ class Films{
     }
 
     public function __toString(){
-        $a = "Dans le film ".$this->titre." ( ".$this->sortie." ) réalisé par ".$this->real->getNom()." ".$this->real->getPrenom()." :<br>";
-        foreach($this->casting as $casting){
-            $a = $a.$casting->getRole()." a été incarné par ".$casting->getNom()." ".$casting->getPrenom()."<br>";
+        $a = "Dans le film ".$this->titre." ( ".$this->sortie." ) :<br>";
+        foreach($this->casting as $cast){
+            $a = $a.$cast->__toString();
         }
         return $a;
     }

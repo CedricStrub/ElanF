@@ -23,12 +23,10 @@ class Real extends Personne {
         }
         $age = $this->getAniv()->diff(new DateTimeImmutable(date('m/d/Y', time())));
         $a = $a.$age->format('%y')." ans sa filmographie est composé de :<br>";
+        
         foreach($this->films as $film){
-            $a = $a.$film->getTitre()." ( ".$film->getSortie()." ) Durée : ".$film->getDuree()."min, Genre : ".$film->getGenre()->getGenre().", synopsis :<br>";
-            $a =$a.$film->getResume()."<br>";
+            $a = $a.$film->getTitre()." ( ".$film->getSortie()." ) Durée : ".$film->getDuree()."min : <br>";
         }
-        //$a = $a.$film->getDuree();
-        //var_dump($this);
 
         return $a;
     }
