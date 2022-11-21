@@ -26,6 +26,7 @@ class Hotel{
 
     public function getInfo(){
         $a = $this->nom." ".$this->ville." :<br>";
+        $a = $a.$this->adresse." ".$this->codeP." ".strtoupper($this->ville)."<br>";
         $a = $a."Nombre de chambre : ".$this->nbChambre."<br>";
         $a = $a."Nombre de chambre réservé : ".count($this->reservation)."<br>";
         $a = $a."Nombre de chambre disponible : ".$this->nbChambre - count($this->reservation)."<br><br>";

@@ -20,6 +20,8 @@ class Client{
     public function getInfo(){
         $a = "Reservation de ".$this->prenom." ".$this->nom."<br>";
         $a = $a.count($this->reservation)." Reservation <br>";
+        $day = 0;
+        $total = 0;
         foreach($this->reservation as $res){
             $a = $a.$res->getHotel()->getNom()." ".$res->getHotel()->getVille()." / Chambre : ".$res->getChambre()->getNumero();
             $a = $a." ( ".$res->getChambre()->getNbLit()." lits - ".$res->getChambre()->getPrix()." € - Wifi : ";
@@ -29,8 +31,12 @@ class Client{
                 $a = $a."non ) du ";
             }
             $a = $a.$res->getArrive()." au ".$res->getDepart().'<br>';
+            $day = new DateTime($res->getArrive());
+            $day = $day->diff(new DateTime($res->getDepart()));
+            $day = $day->format('%d');
+            $total = $total +intval($day) * $res->getChambre()->getPrix();
         }
-        $a = $a."<br>";
+        $a = $a."Total : ".$total." € <br><br>";
         return $a;
     }
 
