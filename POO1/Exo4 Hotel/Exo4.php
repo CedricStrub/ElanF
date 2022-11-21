@@ -9,6 +9,48 @@ de chambres par des clients dans différents hôtels :<br></p>
 
 <?php
 
+spl_autoload_register(function ($class_name) {
 
+    require_once $class_name . '.php';
+
+});
+
+$h1 = new Hotel("Hilton **** ","Strasbourg","10, route de la gare",67000,30);
+$h2 = new Hotel("Regent **** ","Paris","61, rue dauphine",75006,20);
+
+$cl1 = new Client("GIBELLO","Virgile");
+$cl2 = new Client("MURMANN","Micka");
+
+$ch1 = new Chambre(1,1,false,100,$h1);
+$ch2 = new Chambre(2,1,false,100,$h1);
+$ch3 = new Chambre(3,2,false,120,$h1);
+$ch4 = new Chambre(4,2,false,120,$h1);
+$ch5 = new Chambre(5,2,false,120,$h1);
+$ch6 = new Chambre(6,2,true,300,$h1);
+$ch7 = new Chambre(7,2,true,300,$h1);
+$ch8 = new Chambre(8,4,true,500,$h1);
+$ch9 = new Chambre(9,4,true,500,$h1);
+
+$ch11 = new Chambre(1,1,false,100,$h2);
+$ch12 = new Chambre(2,1,false,100,$h2);
+$ch13 = new Chambre(3,2,false,120,$h2);
+$ch14 = new Chambre(4,2,false,120,$h2);
+$ch15 = new Chambre(5,2,false,120,$h2);
+$ch16 = new Chambre(6,2,true,300,$h2);
+$ch17 = new Chambre(7,2,true,300,$h2);
+$ch18 = new Chambre(8,4,true,500,$h2);
+$ch19 = new Chambre(9,4,true,500,$h2);
+
+$r1 = new Reservation($h1,$cl1,$ch7,"01/01/2021","01/02/2021");
+$r2 = new Reservation($h2,$cl1,$ch1,"01/03/2021","01/05/2021");
+$r3 = new Reservation($h1,$cl2,$ch3,"02/05/2021","02/12/2021");
+$r4 = new Reservation($h2,$cl2,$ch9,"02/13/2021","02/15/2021");
+$r5 = new Reservation($h1,$cl2,$ch4,"02/16/2021","02/30/2021");
+
+echo $h1->getInfo();
+echo $h1->getReservation();
+echo $h2->getReservation();
+echo $cl1->getInfo();
+echo $h1->getStatuts();
 
 ?>
