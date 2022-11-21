@@ -9,21 +9,27 @@ class Real extends Personne {
     }
 
     public function addFilm(Films $film){
-        $this->films = $film;
+        $this->films []= $film;
     }
 
     public function __toString(){
-        $a = $this->nom." ".$this->prenom." est ";
-        if($this->sexe == "homme"){
-            $a = $a."un ".$this->sexe." de ";
-        }elseif($this->sexe == "femme"){
-            $a = $a."une ".$this->sexe." de ";
+        $a = $this->getNom()." ".$this->getPrenom()." est ";
+        if($this->getSexe() == "homme"){
+            $a = $a."un ".$this->getSexe()." de ";
+        }elseif($this->getSexe() == "femme"){
+            $a = $a."une ".$this->getSexe()." de ";
         }else{
             $a = $a."agé de ";
         }
-        $age = $this->aniv->diff(new DateTimeImmutable(date('m/d/Y', time())));
-        $a = $a.$age->format('%y')." ans sa filmographie est composé de :";
-        
+        $age = $this->getAniv()->diff(new DateTimeImmutable(date('m/d/Y', time())));
+        $a = $a.$age->format('%y')." ans sa filmographie est composé de :<br>";
+        foreach($this->films as $film){
+            $a = $a.$film->getTitre()." ( ".$film->getSortie()." ) Durée : ".$film->getDuree()."min, Genre : ".$film->getGenre()->getGenre().", synopsis :<br>";
+            $a =$a.$film->getResume()."<br>";
+        }
+        //$a = $a.$film->getDuree();
+        //var_dump($this);
+
         return $a;
     }
 

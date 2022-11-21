@@ -10,7 +10,7 @@ class Personne{
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->sexe = $sexe;
-        $this->aniv = $aniv;
+        $this->aniv = new DateTime($aniv);
     }
 
     public function getNom(){
@@ -37,7 +37,7 @@ class Personne{
         $this->sexe = $sexe;
     }
 
-    public function getAnniv(){
+    public function getAniv(){
         return $this->aniv;
     }
 

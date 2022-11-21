@@ -46,11 +46,20 @@ spl_autoload_register(function ($class_name) {
 $re1 = new Real("Lambert","Hillyer","homme","07/08/1889");
 $g1 = new Genre("super-héros");
 
-$f1 = new Films("Batman","1943",260,$re1,"Batman, est un super-héros de fiction appartenant à l'univers de DC Comics.","super-héros");
+$f1 = new Films("Batman","1943",260,"Batman, est un super-héros de fiction appartenant à l'univers de DC Comics.");
 
 $ro1 = new Roles("Batman");
-$a1 = new Acteurs("Lewis","Wilson","homme","01/28/1920",$ro1);
+$a1 = new Acteurs("Lewis","Wilson","homme","01/28/1920");
 
+$a1->addRole($ro1);
+$f1->addReal($re1);
+$f1->addGenre($g1);
+$f1->addActeurs($a1);
 
+echo $re1;
+echo $g1;
+echo $a1;
+echo $ro1;
+echo $f1;
 
 ?>
