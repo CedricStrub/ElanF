@@ -59,9 +59,8 @@ p4{
     margin-top: -15px;
 }
 
-#occupe, div{
+div{
     width: fit-content;
-    background-color: #D50000;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     display: block;
@@ -69,14 +68,12 @@ p4{
     padding: 5px;
 }
 
-#dispo, div {
-    width: fit-content;
+#occupe, div{
+    background-color: #D50000;
+}
+
+#dispo, div{
     background-color: #1AD500;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    display: block;
-    border-radius: 10px;
-    padding: 5px;
 }
 
 
