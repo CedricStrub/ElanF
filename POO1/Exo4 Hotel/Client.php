@@ -18,8 +18,8 @@ class Client{
     }
 
     public function getInfo(){
-        $a = "Reservation de ".$this->prenom." ".$this->nom."<br>";
-        $a = $a.count($this->reservation)." Reservation <br>";
+        $a = "<p3>Reservation de ".$this->prenom." ".$this->nom." :</p3><br>";
+        $a = $a."<p4>".count($this->reservation)." Reservation </p4><br>";
         $day = 0;
         $total = 0;
         foreach($this->reservation as $res){

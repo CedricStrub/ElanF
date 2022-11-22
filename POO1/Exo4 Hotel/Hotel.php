@@ -25,41 +25,47 @@ class Hotel{
     }
 
     public function getInfo(){
-        $a = $this->nom." ".$this->ville." :<br>";
+        $a = "<p3>".$this->nom." ".$this->ville." :</p3><br>";
         $a = $a.$this->adresse." ".$this->codeP." ".strtoupper($this->ville)."<br>";
         $a = $a."Nombre de chambre : ".$this->nbChambre."<br>";
         $a = $a."Nombre de chambre réservé : ".count($this->reservation)."<br>";
-        $a = $a."Nombre de chambre disponible : ".$this->nbChambre - count($this->reservation)."<br><br>";
+        $dispo = $this->nbChambre - count($this->reservation);
+        $a = $a."Nombre de chambre disponible : ".$dispo."<br><br>";
         return $a;
     }
 
     public function getReservation(){
-        $a = "Reservation de l'hôtel ".$this->nom." ".$this->ville." :<br>";
-        $a = $a.count($this->reservation).' Reservation <br>';
-        foreach($this->reservation as $res){
-            $a = $a.$res->getClient()->getPrenom()." ".$res->getClient()->getNom()." - du ".$res->getArrive()." au ".$res->getDepart()."<br>";
+        $a = "<p3>Reservation de l'hôtel ".$this->nom." ".$this->ville." :</p3><br>";
+        if($this->reservation == []){
+            $a = $a."Aucune reservation pour le moment ! <br>";
+        }
+        else{
+            $a = $a."<p4>".count($this->reservation)." Reservation </p4><br>";
+            foreach($this->reservation as $res){
+                $a = $a.$res->getClient()->getPrenom()." ".$res->getClient()->getNom()." - du ".$res->getArrive()." au ".$res->getDepart()."<br>";
+            }
         }
         $a = $a."<br>";
         return $a;
     }
 
     public function getStatuts(){
-        $a = "Statuts des chambres du ".$this->nom." ".$this->ville." :<br>";
-        $a = $a."<table><tr><th>  Chambre  </th><th>  Prix  </th><th>  Wifi  </th><th>  Etat  </th></tr>";
+        $a = "<p3>Statuts des chambres du ".$this->nom." ".$this->ville." :</p3><br>";
+        $a = $a."<table><thead><tr><th>  Chambre  </th><th>  Prix  </th><th>  Wifi  </th><th>  Etat  </th></tr></thead>";
         foreach($this->chambres as $chambre){
-            $a = $a."<tr><td>".$chambre->getNumero()."</td><td>".$chambre->getPrix()."</td><td>";
+            $a = $a."<tbody><tr><td>Chambre : ".$chambre->getNumero()."</td><td>".$chambre->getPrix()."</td><td>";
             if($chambre->getWifi() == true){
-                $a = $a."oui</td><td>";
+                $a = $a."📶</td><td>";
             }else{
-                $a = $a."non</td><td>";
+                $a = $a."</td><td>";
             }
             if($chambre->getReservation() == []){
-                $a = $a."Disponible</td></tr>";
+                $a = $a."<div id='dispo'>Disponible</div></td></tr>";
             }else{
-                $a = $a."Occupé</td></tr>";
+                $a = $a."<div id='occupe'>Occupé</div></td></tr>";
             }
         }
-        $a = $a."</table>";
+        $a = $a."</tbody></table>";
         return $a;
     }
 
