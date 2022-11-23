@@ -22,7 +22,17 @@
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav me-5 ms-auto bg-dark border border-light rounded">
         <li class="nav-item">
-            <a class="nav-link " href="recap.php">Panier</a>
+            <a class="nav-link " href="recap.php">Panier
+            <span class="badge bg-secondary">
+                <?php
+                if(isset($_SESSION['products'])){
+                    echo count($_SESSION['products']);
+                }else{
+                    echo "0";
+                }
+                ?>
+            </span>
+            </a>
         </li>
         </ul>
     </div>
@@ -61,6 +71,7 @@ if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
     echo "<tr>".
             "<td colspan=4>Total général : </td>".
             "<td><strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€</strong></td>".
+            "<td><a href='traitement.php?action=removeAll'class='text-decoration-none'>🗑</a></td>".
             "</tr>".
         "</tbody></table></div></div>";
         }        

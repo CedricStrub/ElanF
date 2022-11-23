@@ -17,17 +17,27 @@
         </li>
         </ul>
     </div>
-    <div class="navbar-collapse collapse w-100 order-md-3 dual-collapse2 h2">
+    <div class="navbar-collapse collapse w-100 order-md-3 dual-collapse2">
     <div class="collapse navbar-collapse " id="navbarNavDarkDropdown">
         <ul class="navbar-nav ms-auto me-5 bg-dark border border-light rounded ">
-            <a href="recap.php" class="bg-dark text-secondary m-2 text-decoration-none">Panier</a>
+            <a href="recap.php" class="bg-dark text-secondary m-2 text-decoration-none">Panier 
+                <span class="badge bg-secondary">
+                    <?php
+                    session_start();
+                    if(isset($_SESSION['products'])){
+                        echo count($_SESSION['products']);
+                    }else{
+                        echo "0";
+                    }
+                    ?>
+                </span>
+            </a> 
         <button type="button" class="bg-dark dropdown-toggle dropdown-toggle-split text-secondary" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
             <span class="visually-hidden">Toggle Dropdown</span>
         </button>
         <li class="dropdown">
             <ul class="dropdown-menu border-0 dropdown-menu-lg-end mt-4" aria-labelledby="navbarDarkDropdownMenuLink">
                 <?php
-                session_start();
                 if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
                     echo "<div class='d-flex border border-dark rounded-5 bg-light m-5'><h1 class='m-5 text-secondary'>Aucun produit en session ...</h1></div>";
                 }else{
@@ -59,9 +69,9 @@
                             "</tr>".
                         "</tbody></table></div></div>";
                         }
-                ?>
-            </ul>
-        </li>
+                    ?>
+                </ul>
+            </li>
         </ul>
     </div>
     </div>
@@ -85,9 +95,13 @@
             <label for="prix">Quantité désiré :</label>
             <input type="number" class="form-control" name="qtt" value="1" min="1">  
         </div>
-        <div class="form-check mb-5">
-            <label class="form-check-label"></label>
             <input type="submit" class="btn btn-secondary" name="submit" value="Ajouter au panier">
+        <?php
+            if(isset($_SESSION['msg'])){
+                echo "<p>".$_SESSION['msg']."</p>";
+                unset($_SESSION['msg']);
+            }
+            ?>
         </div>
         </div>
         </form>

@@ -16,17 +16,20 @@ switch ($_GET['action']) {
                     "qtt" => $qtt,
                     "total" => $price * $qtt
                 ];
-                $_SESSION['products'][] = $product;
+                $_SESSION['products'] []= $product;
+                $_SESSION['msg'] = "Article ajouté !";
             }
         }
     header("Location:index.php");
     break;
+
     case 'plus':
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         $_SESSION['products'][$id]['qtt']++;
         $_SESSION['products'][$id]['total'] += $_SESSION['products'][$id]['price'];
     header("Location:recap.php");
     break;
+
     case 'moins':
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         if($_SESSION['products'][$id]['qtt'] > 1){
@@ -37,11 +40,19 @@ switch ($_GET['action']) {
         }
     header("Location:recap.php");
     break;
+
     case 'removeProduct':
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         unset($_SESSION['products'][$id]);
     header("Location:recap.php");
     break;
+
+    case 'removeAll':
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        unset($_SESSION['products']);
+    header("Location:recap.php");
+    break;
+
 }
 
 ?>
