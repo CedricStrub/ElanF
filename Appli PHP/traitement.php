@@ -18,6 +18,8 @@ switch ($_GET['action']) {
                 ];
                 $_SESSION['products'] []= $product;
                 $_SESSION['msg'] = "Article ajouté !";
+            }else{
+                $_SESSION['msg'] = "Erreur formulaire incomplet!!!";
             }
         }
     header("Location:index.php");
