@@ -20,16 +20,16 @@
     <div class="navbar-collapse collapse w-100 order-md-3 dual-collapse2 h2">
     <div class="collapse navbar-collapse " id="navbarNavDarkDropdown">
         <ul class="navbar-nav ms-auto me-5 bg-dark border border-light rounded ">
-            <a href="recap.php" class="bg-dark text-secondary m-2">Panier</a>
+            <a href="recap.php" class="bg-dark text-secondary m-2 text-decoration-none">Panier</a>
         <button type="button" class="bg-dark dropdown-toggle dropdown-toggle-split text-secondary" id="dropdownMenuReference" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
             <span class="visually-hidden">Toggle Dropdown</span>
         </button>
         <li class="dropdown">
-            <ul class="dropdown-menu dropdown-menu-lg-end mt-4" aria-labelledby="navbarDarkDropdownMenuLink">
+            <ul class="dropdown-menu border-0 dropdown-menu-lg-end mt-4" aria-labelledby="navbarDarkDropdownMenuLink">
                 <?php
                 session_start();
                 if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
-                    echo "<div class='d-flex m-5'><h1 class='m-5 text-secondary'>Aucun produit en session ...</h1></div>";
+                    echo "<div class='d-flex border border-dark rounded-5 bg-light m-5'><h1 class='m-5 text-secondary'>Aucun produit en session ...</h1></div>";
                 }else{
                     echo "<div class='d-flex'><div class='d-flex bg-light border border-dark rounded-5 m-5'><table class='m-5 table table-bordered'>".
                             "<thead class='text-secondary h3'>".
@@ -68,7 +68,7 @@
     </div>
     </nav>
     <div class="d-flex">
-        <form class="bg-light m-5 border border-dark rounded-5" action="traitement.php" method="post">
+        <form class="bg-light m-5 border border-dark rounded-5" action="traitement.php?action=addProduct" method="post">
         <div class="m-5">
         <div class="m-2">
             <h1 class="text-secondary">Ajouter un produit</h1>
@@ -79,11 +79,11 @@
         </div>
         <div class="mb-3">
             <label for="prix">Prix du produit :</label>
-            <input type="number" class="form-control" placeholder="Prix du produit" name="price">
+            <input type="number" class="form-control" placeholder="Prix du produit" name="price" min="1">
         </div>    
         <div class="mb-3">
             <label for="prix">Quantité désiré :</label>
-            <input type="number" class="form-control" name="qtt" value="1">  
+            <input type="number" class="form-control" name="qtt" value="1" min="1">  
         </div>
         <div class="form-check mb-5">
             <label class="form-check-label"></label>

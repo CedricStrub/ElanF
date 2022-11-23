@@ -28,6 +28,7 @@
     </div>
 </nav>
 <?php
+
 if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
     echo "<div class='d-flex m-5'><h1 class='m-5 text-secondary'>Aucun produit en session ...</h1></div>";
 }else{
@@ -39,6 +40,7 @@ if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
                     "<th>Prix</th>".
                     "<th>Quantité</th>".
                     "<th>Total</th>".
+                    "<th>Del</th>".
                 "</tr>".
             "</thead>".
         "<tbody>";
@@ -48,8 +50,11 @@ if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
                 "<td>".$index."</td>".
                 "<td>".$product['name']."</td>".
                 "<td>".number_format($product['price'],2, ",", "&nbsp;")."&nbsp;€</td>".
-                "<td>".$product['qtt']."</td>".
+                "<td><a href='traitement.php?action=plus&id=".$index."' class='text-dark h5 text-decoration-none'><kbd class='bg-secondary'>+</kbd>  </a>".
+                $product['qtt'].
+                "<a href='traitement.php?action=moins&id=".$index."'class='text-dark h5 text-decoration-none'>  <kbd class='bg-secondary'>-</kbd></a></td>".
                 "<td>".number_format($product['total'],2, ",", "&nbsp;")."&nbsp;€</td>".
+                "<td><a href='traitement.php?action=removeProduct&id=".$index."'class='text-decoration-none'>🗑</a></td>".
             "</tr>";
         $totalGeneral += $product['total'];
     }
@@ -58,7 +63,7 @@ if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
             "<td><strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€</strong></td>".
             "</tr>".
         "</tbody></table></div></div>";
-        }    
+        }        
 ?>
 </body>
 </html>
