@@ -29,11 +29,11 @@ table tr:hover {
 }
 
 table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #CCCCCC;
-  color: #797979;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #CCCCCC;
+    color: #797979;
 }
 
 p3{
