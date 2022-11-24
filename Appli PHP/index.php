@@ -8,16 +8,22 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     </head>
     <body>
-    <nav class="navbar navbar-expand-md bg-secondary navbar-dark h2">
-    <div class="container-fluid">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <nav class="navbar navbar-expand-md bg-secondary navbar-dark">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2 h2">
         <ul class="navbar-nav ms-5 ps-auto bg-dark border border-light rounded">
         <li class="nav-item active">
             <a class="nav-link" href="index.php">Acceuil</a>
         </li>
         </ul>
     </div>
-    <div class="navbar-collapse collapse w-100 order-md-3 dual-collapse2">
+    <div class="d-flex justify-content-center navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2 h1">
+        <ul class="navbar-nav">
+        <li class="nav-item active">
+            <h1 class="nav-link">Acceuil</h1>
+        </li>
+        </ul>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-md-3 dual-collapse2 h2">
     <div class="collapse navbar-collapse " id="navbarNavDarkDropdown">
         <ul class="navbar-nav ms-auto me-5 bg-dark border border-light rounded ">
             <a href="recap.php" class="bg-dark text-secondary m-2 text-decoration-none">Panier 
@@ -36,7 +42,7 @@
             <span class="visually-hidden">Toggle Dropdown</span>
         </button>
         <li class="dropdown">
-            <ul class="dropdown-menu border-0 dropdown-menu-lg-end mt-4" aria-labelledby="navbarDarkDropdownMenuLink">
+            <ul class="dropdown-menu bg-transparent border-0 dropdown-menu-lg-end mt-4" aria-labelledby="navbarDarkDropdownMenuLink">
                 <?php
                 if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
                     echo "<div class='d-flex border border-dark rounded-5 bg-light m-5'><h1 class='m-5 text-secondary'>Aucun produit en session ...</h1></div>";
@@ -69,7 +75,7 @@
                             "</tr>".
                         "</tbody></table></div></div>";
                         }
-                    ?>
+                ?>
                 </ul>
             </li>
         </ul>
@@ -77,6 +83,13 @@
     </div>
     </div>
     </nav>
+<?php
+if(isset($_SESSION['message'])){
+echo "<p style='color:white;text-align:center;background-color:".$_SESSION['color']."'>".$_SESSION['message']."</p>";
+unset($_SESSION['message']);
+unset($_SESSION['color']);
+}   
+?>
     <div class="d-flex">
         <form class="bg-light m-5 border border-dark rounded-5" action="traitement.php?action=addProduct" method="post">
         <div class="m-5">
@@ -89,19 +102,13 @@
         </div>
         <div class="mb-3">
             <label for="prix">Prix du produit :</label>
-            <input type="number" class="form-control" placeholder="Prix du produit" name="price" min="1">
+            <input type="number" class="form-control" placeholder="Prix du produit" name="price" step ='0.01' min="0.01">
         </div>    
         <div class="mb-3">
             <label for="prix">Quantité désiré :</label>
             <input type="number" class="form-control" name="qtt" value="1" min="1">  
         </div>
             <input type="submit" class="btn btn-secondary" name="submit" value="Ajouter au panier">
-        <?php
-            if(isset($_SESSION['msg'])){
-                echo "<p>".$_SESSION['msg']."</p>";
-                unset($_SESSION['msg']);
-            }
-            ?>
         </div>
         </div>
         </form>
