@@ -9,14 +9,20 @@
 </head>
 <body>
     <div id="grid">
+    <div id="message"><p class="dis">Clickez dans l'ordre Croissant</p></div>
     <div id="board"></div>
     <div id="timer"><p class="dis"></p></div>
     <div id="leaderBoard"><h2></h2><ol></ol>
     </div>
     </div>
 <script>
-let time = -1
-let stopT = 99
+
+let setT = -1
+let setS = 99
+let time = setT
+let stopT = setS
+let statuts = "perdu"
+let crono
 const timerElement = document.getElementById("timer").querySelector("p")
 timerElement.innerText = "00:00"
 
@@ -34,9 +40,12 @@ restart.classList.add("restart")
 
 const board = document.querySelector("#board")
 
+const message = document.getElementById("message").querySelector("p")
+
+let number
 text = "Please enter a number"
 while(text != "OK"){
-    let number = prompt(text, "3")
+    number = prompt(text, "10")
     number = parseInt(number)
     if(number != null && typeof(number) === "number"){
         text = "OK"
@@ -46,19 +55,24 @@ while(text != "OK"){
     }
 }
 
+setS = (((number+1) * 100)*(number / 10)+1)
+
+
 function startGame(number){
+    message.innerText = "Clickez dans l'ordre Croissant"
     let nb = 1
     for(let i = 1; i<= number; i++){
         let newbox = box.cloneNode()
         newbox.innerText = i
         board.appendChild(newbox)
+        shuffleChildren(board)
         newbox.addEventListener("click", function(){
             if(time == -1){
-                setInterval(Temps, 10)
+                chrono = setInterval(Temps, 10)
             }
             if(nb == 1){
                 time = 0
-                stopT = 99
+                stopT = setS
             }else if(nb == -1){
                 nb = 1
             }
@@ -69,7 +83,8 @@ function startGame(number){
                     board.querySelectorAll(".box").forEach(function(box){
                         showReaction("succes", box)
                     })
-                    option(board, number, "gagné")
+                    status = "gagné"
+                    option(board, number,"gagne")
                     stopT = time
                 }
                 nb++
@@ -80,7 +95,11 @@ function startGame(number){
                 board.querySelectorAll(".box-clicked").forEach(function(validBox){
                     validBox.classList.remove("box-clicked")
                 })
-                shuffleChildren(board)
+                board.querySelectorAll(".box").forEach(function(box){
+                    showReaction("perdu", box)
+                })
+                clearInterval(chrono)
+                option(board, number,"perdu")
             }
             else{
                 showReaction("notice", newbox)
@@ -94,7 +113,7 @@ function startGame(number){
 function shuffleChildren(parent){
     let children = parent.children
     let i = children.length, k ,temp
-    while(--i > 0){
+    while(--i >= 0){
         k = Math.floor(Math.random()*(i+1))
         temp = children[k]
         children[k] = children[i]
@@ -120,8 +139,7 @@ function removeAllChild(parent){
 function option(parent, number, action){
     restart.innerText = "restart"
     parent.appendChild(restart)
-
-    if(action == "gagné"){
+    if(action == "gagne"){
         nlb = []
         for(i=0;i<=9;i++){
             if(time < lb[i] ){
@@ -137,22 +155,23 @@ function option(parent, number, action){
                 nlb.push(lb[i])
             }
         }
+        message.innerText = "Felicitation vous avez gagné !!!"
         lb.splice(0,lb.length, ...nlb)
-    lBoard.querySelector("h2").innerText += "\n " + parseInt(time / 100, 10) + " : " + parseInt(time % 100, 10)
-    removeAllChild(lBoard.querySelector("ol"))
-    leaderBoard()
+        lBoard.querySelector("h2").innerText += "\n " + parseInt(time / 100, 10) + " : " + parseInt(time % 100, 10)
+        removeAllChild(lBoard.querySelector("ol"))
+        leaderBoard()
+    }else if(action == "perdu"){
+        message.innerText = "Dommage vous avez perdu. Ré-essayez !"
+    }
     restart.addEventListener("click", function(){
         removeAllChild(board)
         startGame(number)
         lBoard.querySelector("h2").innerText = " LeaderBoard : "
         timerElement.innerText = "00:00"
-        time = 0
-        stopT = 0
+        time = setT
+        stopT = setS
+        status = "perdu"
     })
-    }
-    else if(action == "perdu"){
-        
-    }
 }
 
 function leaderBoard(){
@@ -175,14 +194,16 @@ function leaderBoard(){
 
 
 function Temps() {
-    let secondes = parseInt(time / 100, 10)
-    let dixieme = parseInt(time % 100, 10)
+    let secondes = parseInt((time-1) / 100, 10)
+    let dixieme = parseInt((time-1) % 100, 10)
     timerElement.innerText = secondes + ":" + dixieme
-    time = time >= stopT ? stopT : time + 1 
-    if(time == stopT - 1){
+    time = time > stopT ? stopT : time + 1 
+    if(time == stopT){
         board.querySelectorAll(".box").forEach(function(box){
             showReaction("perdu", box)
         })
+        clearInterval(chrono)
+        option(board,number,status)
     }
 }
 
