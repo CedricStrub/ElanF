@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <title>Document</title>
+</head>
+<body>
+<div class="main">
+<div id="calendar"></div>
+</div>
+<script>
+
+const grid = document.getElementById("calendar")
+
+const box = document.createElement("div")
+box.classList.add("box")
+const img = document.createElement("img")
+img.classList.add("img")
+const cover = document.createElement("div")
+
+
+const txt = document.createElement("p")
+
+
+let color = ["green","red","blue","yellow"]
+let last 
+let table = [] 
+
+createCase()
+
+function createCase(){
+    for(i=1;i<=24;i++){
+        let newbox = box.cloneNode()
+        let newcover = cover.cloneNode()
+        img.src = "houx.jpg"
+        newbox.appendChild(img.cloneNode())
+        newcover.innerText = i
+        j = Math.floor(Math.random()*(4))  
+        if(i >= 7){
+            while(table[i-7] == j || table[i-1] == j || last == j){
+                j = Math.floor(Math.random()*(4))
+            }
+        }else{
+            while(last == j){
+                j = Math.floor(Math.random()*(4))
+            }
+        }
+        last = j
+        table.push(j)
+        newcover.classList.add(color[table[i-1]])  
+
+        newbox.appendChild(newcover)
+        grid.appendChild(newbox)
+
+        newbox.addEventListener("click", function(){
+            newbox.removeChild(newcover)
+        })
+    }
+}
+
+</script>
+</body>
+</html>

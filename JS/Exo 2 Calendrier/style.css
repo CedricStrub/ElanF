@@ -1,0 +1,77 @@
+body{
+    background-color: black;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+#calendar{
+    display: flex;
+    width: 930px;
+    height: 625px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.box{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 2.5px;
+    font-family: "Sofia", sans-serif;
+    vertical-align: middle;
+    color: white;
+    font-size: 3em;
+    line-height: 150px; 
+}
+
+.green:hover, .red:hover, .blue:hover, .yellow:hover{
+    transition: background 0.8s, color 0.8s, transform 0.8s;
+    color: transparent;
+    background: transparent;
+}
+
+.img{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.green{
+    position: absolute;
+    text-align: center;
+    background: rgb(59, 158, 98);
+    height: 100%;
+    width: 100%;
+}
+
+.red{
+    position: absolute;
+    text-align: center;
+    background: rgb(158, 59, 59);
+    height: 100%;
+    width: 100%;
+}
+
+.blue{
+    position: absolute;
+    text-align: center;
+    background: rgb(59, 130, 158);
+    height: 100%;
+    width: 100%;
+}
+
+.yellow{
+    position: absolute;
+    text-align: center;
+    background: rgb(145, 137, 49);
+    height: 100%;
+    width: 100%;
+}
+
+
