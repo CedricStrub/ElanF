@@ -2,13 +2,153 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(43, 62, 102);
+    background-image: url("stonks.png");
+    background-size: 100vw 100vh;
+}
+
+#container{
+    width: 700px;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    background-color: rgba(170, 170, 170, 0.514);
+    border-radius: 5px;
+    box-shadow: 5px 10px 18px #0000005b;
+    margin-top: 50px;
+}
+
+#light{
+    position: absolute;
+    top: 0px;
+    left: 90%;
+    width: 50px;
+    height: 10px;
+    background-color: chartreuse;
+    box-shadow: 0px 0px 60px 15px chartreuse;
 }
 
 #calculatrice{
-    width: 700px;
+    width: 650px;
     height: 700px;
-    border: 1px solid black;
-    background-color: #aaa;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 60px;
+}
+
+#ecran{
+    width: 635px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+    border: 5px solid white;
+    background-color: rgb(221, 221, 221);
     border-radius: 5px;
+    box-shadow: 0px 8px 12px #00000080;
+}
+
+#display{
+    width: 600px;
+    height: 80px;
+    font-size: 50px;
+    text-align: right;
+    line-height: 80px;
+}
+
+
+#groupes{
+    width: 650px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+#gr1{
+    display: flex;
+    flex-wrap: wrap;
+    width: 345px;
+    height: 450px;
+}
+
+#grSpacer{
+    width: 85px;
+    height: 480px;
+}
+
+#gr2{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 230px;
+    height: 450px;
+}
+
+#touche{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    border-radius: 5px;
+    margin: 5px;
+    box-shadow: 5px 10px 18px #0000005b;
+    cursor: pointer;
+}
+
+#touchel{
+    width: 100px;
+    height: 210px;
+    text-align: center;
+    line-height: 210px;
+    border-radius: 5px;
+    margin: 5px;
+    box-shadow: 5px 10px 18px #0000005b;
+    cursor: pointer;
+}
+
+#toucheL{
+    width: 210px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    border-radius: 5px;
+    margin: 5px;
+    box-shadow: 5px 10px 18px #0000005b;
+    cursor: pointer;
+}
+
+.txtb{
+    color: rgb(0, 0, 56);
+}
+
+.lgray{
+    background-color: rgb(221, 221, 221);
+}
+
+#touche:hover, #touchel:hover, #toucheL:hover{
+    transition: background-color 0.2s, transform 0.2s;
+    background-color: rgba(255, 255, 255, 0.285);
+}
+
+.blue{
+    background-color: rgb(51, 63, 172);
+}
+
+.green{
+    background-color: rgb(107, 189, 20);
+}
+
+.turquoise{
+    background-color: rgb(40, 193, 240);
+}
+
+.red{
+    background-color: rgb(96, 25, 25);
 }
