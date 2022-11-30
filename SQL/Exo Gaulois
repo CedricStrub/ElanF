@@ -1,0 +1,71 @@
+1).
+SELECT nom_lieu 
+FROM lieu 
+WHERE nom_lieu LIKE '%um'
+
+2).
+SELECT id_lieu, COUNT(*) 
+FROM personnage 
+GROUP BY id_lieu 
+ORDER BY COUNT(*) DESC
+
+3).
+SELECT nom_personnage, specialite.nom_specialite, adresse_personnage, lieu.nom_lieu
+FROM personnage, specialite , lieu 
+WHERE personnage.id_specialite = specialite.id_specialite AND personnage.id_lieu = lieu.id_lieu 
+ORDER BY lieu.nom_lieu ASC, nom_personnage ASC
+
+4).
+SELECT COUNT(*), specialite.nom_specialite
+FROM personnage, specialite 
+WHERE personnage.id_specialite = specialite.id_specialite 
+GROUP BY specialite.nom_specialite
+ORDER BY COUNT(*) DESC
+
+5).
+SELECT nom_bataille, date_bataille, lieu.nom_lieu
+FROM bataille, lieu 
+WHERE bataille.id_lieu = lieu.id_lieu
+ORDER BY date_bataille ASC
+
+6).
+SELECT nom_potion, SUM(composer.qte * ingredient.cout_ingredient)
+FROM potion, composer, ingredient
+WHERE potion.id_potion = composer.id_potion AND composer.id_ingredient = ingredient.id_ingredient
+GROUP BY nom_potion 
+ORDER BY SUM(composer.qte * ingredient.cout_ingredient) DESC
+
+7).
+SELECT ingredient.nom_ingredient ,ingredient.cout_ingredient, composer.qte, nom_potion
+FROM potion, composer, ingredient
+WHERE nom_potion = 'Santé' AND potion.id_potion = composer.id_potion AND composer.id_ingredient = ingredient.id_ingredient
+GROUP BY ingredient.nom_ingredient
+
+8).
+SELECT personnage.nom_personnage, nom_bataille, SUM(prendre_casque.qte)
+FROM bataille, prendre_casque, personnage
+WHERE nom_bataille = 'Bataille du village gaulois' AND bataille.id_bataille = prendre_casque.id_bataille AND prendre_casque.id_personnage = personnage.id_personnage
+GROUP BY personnage.nom_personnage
+ORDER BY SUM(prendre_casque.qte) DESC
+LIMIT 1
+
+9).
+SELECT personnage.nom_personnage, SUM(dose_boire)
+FROM boire, personnage
+WHERE boire.id_personnage = personnage.id_personnage
+GROUP BY personnage.nom_personnage 
+ORDER BY SUM(dose_boire) DESC
+
+10).
+SELECT nom_bataille, SUM(prendre_casque.qte)
+FROM bataille, prendre_casque
+WHERE bataille.id_bataille = prendre_casque.id_bataille
+GROUP BY nom_bataille 
+ORDER BY SUM(prendre_casque.qte) DESC
+
+11).
+SELECT type_casque.nom_type_casque, SUM(cout_casque)
+FROM casque, type_casque
+WHERE casque.id_type_casque = type_casque.id_type_casque
+GROUP BY type_casque.nom_type_casque
+ORDER BY SUM(cout_casque) DESC
