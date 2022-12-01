@@ -30,10 +30,6 @@ class Joueurs{
         $this->debut []= $debut;
     }
 
-    public function addJoueur($joueur){
-        $this->joueur []= $joueur;
-    }
-
     public function getNom(){
         return $this->nom;
     }
