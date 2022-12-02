@@ -89,6 +89,7 @@ HAVING COUNT(personnage.nom_personnage)=(
 		GROUP BY nom_lieu) 
 	AS a)
 
+
 14).
 SELECT nom_personnage
 FROM personnage
