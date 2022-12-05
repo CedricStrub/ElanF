@@ -1,6 +1,8 @@
 a).
-SELECT * 
-FROM film 
+SELECT titre, YEAR(date_sortie), TIME_FORMAT(SEC_TO_TIME(duree*60),"%h:%i"), p.nom, p.prenom
+FROM film f
+INNER JOIN realisateur r ON f.id_realisateur = r.id_realisateur 
+INNER JOIN personne p ON r.id_personne = p.id_personne
 WHERE id_film = '0';
 
 b).
@@ -17,19 +19,19 @@ INNER JOIN personne ON realisateur.id_personne = personne.id_personne
 WHERE realisateur.id_realisateur = '2';
 
 d).
-SELECT genre.libelle, COUNT(genre.libelle)
-FROM classer
-INNER JOIN genre ON classer.id_genre = genre.id_genre
-GROUP BY genre.libelle
-ORDER BY COUNT(genre.libelle) DESC;
+SELECT g.libelle, COUNT(c.id_genre) AS nbFilms
+FROM classer c
+INNER JOIN genre g ON c.id_genre = g.id_genre
+GROUP BY c.id_genre
+ORDER BY nbFilms DESC;
 
 e).
-SELECT personne.nom, personne.prenom, COUNT(film.titre)
+SELECT personne.nom, personne.prenom, COUNT(film.id_film) AS nbFilms
 FROM film
 INNER JOIN realisateur ON film.id_realisateur = realisateur.id_realisateur
 INNER JOIN personne ON realisateur.id_personne = personne.id_personne
-GROUP BY personne.nom, personne.prenom
-ORDER BY COUNT(film.titre) DESC;
+GROUP BY personne.id_personne
+ORDER BY nbFilms DESC;
 
 f).
 SELECT personne.nom, personne.prenom, personne.sexe, role.nom_du_personnage
@@ -78,4 +80,4 @@ FROM casting
 INNER JOIN acteur ON casting.id_acteur = acteur.id_acteur
 INNER JOIN personne ON acteur.id_personne = personne.id_personne
 GROUP BY casting.id_acteur
-HAVING COUNT(personne.nom) >= 3;
+HAVING COUNT(*) >= 3;
