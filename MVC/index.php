@@ -10,7 +10,12 @@ $ctrlCinema = new CinemaController();
 
 if(isset($_GET["action"])){
     switch ($_GET["action"]){
-        case "listFilms" : $ctrlCinema->listFilm();break;
+        case "listFilms" : $ctrlCinema->listFilms();break;
         case "ListActeurs" : $ctrlCinema->listActeur(); break;
     }
 }
+
+
+
+
+?>
